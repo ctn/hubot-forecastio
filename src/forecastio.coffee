@@ -36,3 +36,8 @@ module.exports = (robot) ->
           daily = forecastResponse.daily.summary if (forecastResponse.daily)
           msg.send "In #{formattedLocation}, it is currently #{forecastResponse.currently.temperature}. Feels like #{forecastResponse.currently.apparentTemperature}. #{minutely} #{hourly}"
           msg.send "#{daily}"
+          if (forecastResponse.daily && forecastResponse.daily.data)
+            forecastResponse.daily.data.forEach(
+              date = new Date(this.time)
+              msg.send "#{date}"
+            )
