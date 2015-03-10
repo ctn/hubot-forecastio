@@ -21,7 +21,6 @@ module.exports = (robot) ->
     location = encodeURI(msg.match[1])
     msg.http("http://maps.googleapis.com/maps/api/geocode/json?address=#{location}&sensor=false")
     .get() (err, res, body) ->
-      msg.send "Google Maps says: #{body}"
       geocodeResponse = JSON.parse(body)
       formattedLocation = geocodeResponse.results[0].formatted_address
       lat = geocodeResponse.results[0].geometry.location.lat
